@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => env('DB_CONNECTION', 'rhinoforum'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,6 +41,27 @@ return [
             'database' => env('DB_DATABASE', database_path('database.sqlite')),
             'prefix' => '',
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
+
+        'rhinoforum' => [
+            'driver'         => 'mysql',
+            'url'            => env('DATABASE_URL'),
+            'host'           => env('DB_HOST', '127.0.0.1'),
+            'port'           => env('DB_PORT', '3306'),
+            'database'       => 'rhinoforum',
+            'username'       => env('DB_USERNAME', 'root'),
+            'password'       => env('DB_PASSWORD', ''),
+            'unix_socket'    => env('DB_SOCKET', ''),
+            'charset'        => env('DB_CHARSET', 'utf8'),
+            'collation'      => env('DB_COLLATION', 'utf8_general_ci'),
+            'prefix'         => '',
+            'prefix_indexes' => true,
+            'strict'         => false,
+            'engine'         => 'InnoDB',
+            'timezone'       => env('DB_TIMEZONE', '+08:00'),
+            'options'        => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
         ],
 
         'mysql' => [
