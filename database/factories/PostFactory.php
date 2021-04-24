@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -24,9 +25,10 @@ class PostFactory extends Factory
         $categories = ['Tech', 'Financial', 'Startup', 'Design'];
 
         return [
-            'content' => $this->faker->realText(),
-            'category' => $this->faker->randomElement($categories),
+            'content'      => $this->faker->realText(),
+            'category'     => $this->faker->randomElement($categories),
             'published_at' => now(),
+            'user_id'      => '',
         ];
     }
 }
