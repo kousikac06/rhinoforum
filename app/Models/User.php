@@ -5,11 +5,31 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Post;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
+
+     /**
+     * 此模型的連接名稱
+     *
+     * @var string
+     */
+    protected $connection = 'rhinoforum';
+
+    /**
+     * 與模型關聯的資料表
+     *
+     * @var string
+     */
+    protected $table = 'rhinoforum.user';
+
+     /**
+     * 模型的主鍵
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +53,20 @@ class User extends Authenticatable
     ];
 
     /**
+     * 指示ID是否自動遞增
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
+     * 指定是否模型應該被戳記時間
+     *
+     * @var bool
+     */
+    public $timestamps = true;
+
+    /**
      * The attributes that should be cast to native types.
      *
      * @var array
@@ -41,7 +75,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function posts()
+    public function post()
     {
         return $this->hasMany(Post::class);
     }
