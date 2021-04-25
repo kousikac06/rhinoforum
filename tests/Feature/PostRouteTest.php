@@ -62,8 +62,8 @@ class PostRouteTest extends TestCase
             'content'            => 1,
             'published_at_start' => '2021-02-24',
             'published_at_end'   => '2021-02-24 13',
-            'per_page'           => '10',
-            'current_page'       => '1',
+            'per_page'           => '十',
+            'current_page'       => '一',
         ]);
 
         $response
@@ -85,6 +85,12 @@ class PostRouteTest extends TestCase
                     ],
                     "published_at_end"   => [
                         0 => "發佈結束時間，格式必須為Y-m-d H:i:s (ex: 2021-01-01 13:01:01)",
+                    ],
+                    "per_page"           => [
+                        0 => "指定頁數，必須為數字",
+                    ],
+                    "current_page"       => [
+                        0 => "每頁資料比數，必須為數字",
                     ],
                 ],
             ]);
@@ -270,29 +276,29 @@ class PostRouteTest extends TestCase
     /**
      * @test
      *
-     * 1021筆找內容包含旅遊的查詢時間測試
+     * 10012筆找內容包含旅遊的查詢時間測試
      */
-    public function postsPressureTest()
-    {
-        User::factory()->count(100)->create()->each(function ($user) {
-            Post::factory()->count(10)->create([
-                'user_id' => $user->id,
-            ]);
-        });
-
-        $start = microtime(true);
-
-        $response = $this->call('GET', route('posts'), [
-            'content' => '汽車',
-        ]);
-
-        $time = microtime(true) - $start;
-
-
-        dump('1021筆找內容包含旅遊的查詢時間: '.$time.'秒');
-
-        $response
-            ->assertStatus(200)
-            ->assertJsonCount(3, 'data');
-    }
+    // public function postsPressureTest()
+    // {
+    //     User::factory()->count(10)->create()->each(function ($user) {
+    //         Post::factory()->count(1000)->create([
+    //             'user_id' => $user->id,
+    //         ]);
+    //     });
+    //
+    //     $start = microtime(true);
+    //
+    //     $response = $this->call('GET', route('posts'), [
+    //         'content' => '汽車',
+    //     ]);
+    //
+    //     $time = microtime(true) - $start;
+    //
+    //
+    //     dump('10012筆找內容包含旅遊的查詢時間: '.$time.'秒');
+    //
+    //     $response
+    //         ->assertStatus(200)
+    //         ->assertJsonCount(3, 'data');
+    // }
 }
