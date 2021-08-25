@@ -12,7 +12,7 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
-     * 取得分頁參數22
+     * 取得分頁參數55
      *
      * @param $formData
      * @return mixed
