@@ -9,7 +9,7 @@ use Exception;
 
 class PostController extends Controller
 {
-    /**11225555888999
+    /**112255558889998888
      * @var PostRepository
      */
     protected $postRepository;
